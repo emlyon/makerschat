@@ -9,8 +9,8 @@ app.use( express.static( __dirname + '/public' ) );
 app.get( '/', ( req, res ) => {
     res.sendFile( 'index.html' );
 } );
-http.listen( config.serverPort, () => {
-    console.log( 'listening on', config.serverPort );
+http.listen( process.env.PORT || config.serverPort, () => {
+    console.log( 'listening on', process.env.PORT || config.serverPort );
 } );
 
 
