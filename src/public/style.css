@@ -1,0 +1,12 @@
+body{
+    background: #234;
+    margin: 0;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+input{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
