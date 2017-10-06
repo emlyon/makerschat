@@ -1,5 +1,5 @@
 window.addEventListener( 'load', e => {
-	document.document.querySelector( '#apprtc' ).style.height = window.innerHeight + 'px';
+	document.querySelector( '#apprtc' ).style.height = window.innerHeight + 'px';
 	var socket = io();
 
 	socket.on( 'connected', function( data ){
