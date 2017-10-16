@@ -1,7 +1,7 @@
 window.addEventListener( 'load', e => {
 	let username = prompt( 'enter your username' )
 
-	var socket = io()
+	const socket = io()
 
 	socket.on( 'connected', data => {
 		console.log( socket.id )
