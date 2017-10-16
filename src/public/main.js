@@ -14,7 +14,7 @@ window.addEventListener( 'load', function( e ) {
 		e.preventDefault();
 
 		if( e.key == 'Enter' ){
-			socket.emit( 'msg', msg );
+			socket.emit( 'msg', msgBox.value );
 			msgBox.value = '';
 		}
     }, false );
