@@ -24,7 +24,7 @@ gulp.task( 'watch', [ 'server:start' ], () => {
     const restartClient = file => {
         livereload.changed( file.path );
     }
-    gulp.watch( [ './src/public/**/*.*' ] ).on( 'change', restartClient );
+    gulp.watch( [ './src/public/**/*.*', '!./src/public/**/*.scss' ] ).on( 'change', restartClient );
 } );
 
 // gulp.task( 'client', () => {
