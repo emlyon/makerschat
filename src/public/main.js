@@ -1,48 +1,44 @@
-window.addEventListener( 'load', e => {
-	let username = prompt( 'enter your username' )
+window.addEventListener( 'load', function( e ) {
+	var username = prompt( 'enter your username' );
 
-	const socket = io()
+	var socket = io();
 
-	socket.on( 'connected', data => {
-		console.log( socket.id )
-		console.log( data )
-		socket.emit( 'username', username )
-	} )
+	socket.on( 'connected', function( data ) {
+		console.log( socket.id );
+		console.log( data );
+		socket.emit( 'username', username );
+	} );
 
-    const msgBox = document.querySelector( '#msgbox' )
-	let msg
-	msgBox.addEventListener( 'keyup', e => {
-		e.preventDefault()
+    var msgBox = document.querySelector( '#msgbox' );
+	msgBox.addEventListener( 'keyup', function( e ) {
+		e.preventDefault();
 
 		if( e.key == 'Enter' ){
-			socket.emit( 'msg', msg )
-			msgBox.value = ''
+			socket.emit( 'msg', msg );
+			msgBox.value = '';
 		}
-		else{
-			msg = msgBox.value
-		}
-    }, false )
+    }, false );
 
-	socket.on( 'newMsg', data => {
-		const msg = document.createElement( 'div' )
-		msg.classList.add( 'msg' )
+	socket.on( 'newMsg', function( data ) {
+		var msg = document.createElement( 'div' );
+		msg.classList.add( 'msg' );
 
-		let message = ''
+		var content = '';
 		if( data.username == username ){
-			msg.classList.add( 'from-me' )
+			msg.classList.add( 'from-me' );
 		}
 		else{
-			msg.classList.add( 'from-other' )
-			message += `<span class="username">${data.username}</span>:<br>`
+			msg.classList.add( 'from-other' );
+			content += '<span class="username">' + data.username + '</span>:<br>';
 		}
 
-		message += data.msg;
-		msg.innerHTML = message
+		content += data.msg;
+		msg.innerHTML = content;
 
-		let row = document.createElement( 'div' )
-		row.classList.add( 'row' )
-		row.appendChild( msg )
-		document.querySelector( '#chat' ).appendChild( row )
-		window.scrollTo( 0, document.body.clientHeight )
-	} )
-} )
+		var row = document.createElement( 'div' );
+		row.classList.add( 'row' );
+		row.appendChild( msg );
+		document.querySelector( '#chat' ).appendChild( row );
+		window.scrollTo( 0, document.body.clientHeight );
+	} );
+} );
