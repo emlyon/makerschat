@@ -1,15 +1,13 @@
-var express = require( 'express' ),
-    app = express(),
-    http = require( 'http' ).Server( app ),
-    io = require( 'socket.io' )( http );
+var express = require( 'express' );
+var app = express();
+var server = require( 'http' ).Server( app );
+var io = require( 'socket.io' )( server );
 
-// Create the HTTP Server using static directory
+server.listen( 80 );
+
 app.use( express.static( __dirname + '/public' ) );
-app.get( '/', function( req, res ) {
-    res.sendFile( 'index.html' );
-} );
-http.listen( process.env.PORT || 8000, function() {
-    console.log( 'listening on', process.env.PORT || 8000 )
+app.get( '/', function ( req, res ) {
+    res.sendfile( 'index.html' );
 } );
 
 
